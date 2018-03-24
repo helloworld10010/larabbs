@@ -51,7 +51,13 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-        ]);
+//            表达式里的第二个 captcha 是 mews/captcha 自定义的表单验证规则。
+//扩展包非常巧妙地利用了 Laravel 表单验证器提供的 自定义表单验证规则 功能
+
+            'captcha' => 'required|captcha',
+        ],['captcha.required' => '验证码不能为空',
+            'captcha.captcha' => '请输入正确的验证码',
+            ]);
     }
 
     /**
