@@ -3,7 +3,7 @@
 @section('title', $user->name . ' 的个人中心')
 
 @section('content')
-
+    {{--并排--}}
     <div class="row">
 
         <div class="col-lg-3 col-md-3 hidden-sm hidden-xs user-info">
@@ -12,7 +12,7 @@
                     <div class="media">
                         <div align="center">
                             <img class="thumbnail img-responsive"
-                                 src="https://fsdhubcdn.phphub.org/uploads/images/201709/20/1/PtDKbASVcz.png?imageView2/1/w/600/h/600"
+                                 src="{{ $user->avatar }}"
                                  width="300px" height="300px">
                         </div>
                         <div class="media-body">
