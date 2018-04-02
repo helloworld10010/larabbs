@@ -12,12 +12,14 @@ class TopicsController extends Controller {
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
-    public function index() {
+    public function index(Request $request,Topic $topic) {
         /*
          * 方法 with() 提前加载了我们后面需要用到的关联属性 user 和 category，并做了缓存。
          * 后面即使是在遍历数据时使用到这两个关联属性，数据已经被预加载并缓存，因此不会再产生多余的 SQL 查询：
+         *
+         * $request->order 是获取 URI http://larabbs.app/topics?order=recent 中的 order 参数。
          */
-        $topics = Topic::with('user','category')->paginate(20);
+        $topics = $topic->withOrder($request->order)->paginate(20);
         return view('topics.index', compact('topics'));
     }
 

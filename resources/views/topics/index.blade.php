@@ -17,8 +17,11 @@
 
                 <div class="panel-heading">
                     <ul class="nav nav-pills">
-                        <li role="presentation" class="active"><a href="#">最后回复</a></li>
-                        <li role="presentation"><a href="#">最新发布</a></li>
+                        {{--当前查询--}}
+                        {{--当前页面url添加参数--}}
+                        {{--if_query() - 判断指定(当前url?)的 GET 变量是否符合设置的值；--}}
+                        <li class="{{ active_class( ! if_query('order', 'recent') ) }}" role="presentation" class="active"><a href="{{ Request::url() }}?order=default">最后回复</a></li>
+                        <li class="{{ active_class(if_query('order', 'recent')) }}" role="presentation"><a href="{{ Request::url()  }}?order=recent">最新发布</a></li>
                     </ul>
                 </div>
 

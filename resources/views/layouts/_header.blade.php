@@ -23,11 +23,22 @@
             <ul class="nav navbar-nav">
                 {{--选中状态 我们需要通过判断『路由命名』和『路由参数』为导航栏添加 active 类，接下来我们使用一个很方便的类库来辅助我们实现此功能。--}}
                 {{--active_class 如果传参满足指定条件 ($condition) ，此函数将返回 $activeClass，否则返回 $inactiveClass。--}}
-                <li class="{{ active_class(if_route('topics.index')) }}"><a href="{{ route('topics.index') }}">话题</a></li>
-                <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 1))) }}"><a href="{{ route('categories.show', 1) }}">分享</a></li>
-                <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 2))) }}"><a href="{{ route('categories.show', 2) }}">教程</a></li>
-                <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 3))) }}"><a href="{{ route('categories.show', 3) }}">问答</a></li>
-                <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 4))) }}"><a href="{{ route('categories.show', 4) }}">公告</a></li>
+                {{--if_route() - 判断当前对应的路由是否是指定的路由；
+                    if_route_param() - 判断当前的 url 有无指定的路由参数。
+                    if_query() - 判断指定的 GET 变量是否符合设置的值；
+                    if_uri() - 判断当前的 url 是否满足指定的 url；
+                    if_route_pattern() - 判断当前的路由是否包含指定的字符；
+                    if_uri_pattern() - 判断当前的 url 是否含有指定的字符；--}}
+                <li class="{{ active_class(if_route('topics.index')) }}"><a href="{{ route('topics.index') }}">话题</a>
+                </li>
+                <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 1))) }}"><a
+                            href="{{ route('categories.show', 1) }}">分享</a></li>
+                <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 2))) }}"><a
+                            href="{{ route('categories.show', 2) }}">教程</a></li>
+                <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 3))) }}"><a
+                            href="{{ route('categories.show', 3) }}">问答</a></li>
+                <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 4))) }}"><a
+                            href="{{ route('categories.show', 4) }}">公告</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
