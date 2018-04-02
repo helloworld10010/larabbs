@@ -7,6 +7,8 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    {{--话题字段 excerpt 是文章摘录，用作 SEO 页面描述使用，因此我们还需要修改主布局模板，新增 --}}
+    <meta name="description" content="@yield('description', 'LaraBBS 爱好者社区')" />
 
     <title>@yield('title', 'LaraBBS') - Laravel 进阶教程</title>
 
