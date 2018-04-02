@@ -4,7 +4,14 @@ namespace App\Models;
 
 class Topic extends Model
 {
-    protected $fillable = ['title', 'body', 'user_id', 'category_id', 'reply_count', 'view_count', 'last_reply_user_id', 'order', 'excerpt', 'slug'];
+    /*
+        user_id —— 文章的作者，我们不希望文章的作者可以被随便指派；
+        last_reply_user_id —— 最后回复的用户 ID，将有程序来维护；
+        order —— 文章排序，将会是管理员专属的功能；
+        reply_count —— 回复数量，程序维护；
+        view_count —— 查看数量，程序维护；
+     */
+    protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug'];
 
     /*
      * 有了以上的关联设定，后面开发中我们可以很方便地通过 $topic->category、$topic->user 来获取到话题对应的分类和作者
