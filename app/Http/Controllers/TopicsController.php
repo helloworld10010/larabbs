@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Handlers\ImageUploadHandler;
 use App\Models\Category;
 use App\Models\Topic;
 use Illuminate\Http\Request;
@@ -59,5 +60,31 @@ class TopicsController extends Controller {
         $topic->delete();
 
         return redirect()->route('topics.index')->with('message', 'Deleted successfully.');
+    }
+
+    /*
+     * 在 Laravel 的控制器方法中，如果直接返回数组，将会被自动解析为 JSON。
+     * 接下来我们编写控制器的逻辑，根据第一步设置的路由在话题控制器中新增 uploadImage 方法：
+     */
+
+    public function uploadImage(Request $request, ImageUploadHandler $uploader) {
+        // 初始化返回数据，默认是失败的
+        $data = [
+            'success'   => false,
+            'msg'       => '上传失败!',
+            'file_path' => ''
+        ];
+        // 判断是否有上传文件，并赋值给 $file
+        if ($file = $request->upload_file) {
+            // 保存图片到本地
+            $result = $uploader->save($request->upload_file, 'topics', \Auth::id(), 1024);
+            // 图片保存成功的话
+            if ($result) {
+                $data['file_path'] = $result['path'];
+                $data['msg']       = "上传成功!";
+                $data['success']   = true;
+            }
+        }
+        return $data;
     }
 }
